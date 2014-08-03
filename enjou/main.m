@@ -22,14 +22,14 @@ long tmpnumber, tmpcost;
 long mincost;
 
 
-// チェック用
+// テスト用
 int jchi;
 int testnumber[50];
 long testcost[50];
 bool testflag[50];
 const long answer = 14499;
 
-// 配列メモ
+// テスト用配列メモ
 void arraymemo(int a[], long b[], bool c[], int jt){
     for (int i = 0; i < jt; i++){
         testnumber[i] = a[i];
@@ -206,7 +206,7 @@ int main(int argc, const char * argv[])
         //NSLog(@"jchi is %d. m,n is %ld,%d.", jchi,m,n);
         //NSLog(@"以下は配列(arraymemo)");
         //NSLog(@"使用フラグ 社員数 予算");
-        //for (i =0;i<n;i++){
+        //for (i =0;i<jchi+1;i++){
         //    NSLog(@"%d %d %ld", testflag[i],testnumber[i],testcost[i]);
         //}
         
