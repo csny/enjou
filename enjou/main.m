@@ -10,7 +10,7 @@
 
 long m;
 int n;
-int i,j;
+//int i,j;
 int q[50];
 long r[50];
 bool s[50];
@@ -171,6 +171,7 @@ int main(int argc, const char * argv[])
         
         // 探索開始
         // 全探索版-会社数が少なければ全探索
+        
         if(n<15){
             
             for (int i = 0; i < n; i++){
