@@ -41,56 +41,65 @@ void arraymemo(int a[], long b[], bool c[], int jt){
 // 全探索
 void corpcheck1(int j) {
     
-    if(j > n-1) return; /* 全会社チェック終了 */
+    // j番目の会社情報を加算する前にチェック
+    if(j > n-1) {return;} /* 全会社チェック終了 */
+    if(tmpnumber >= m){return;} /* 枝落とし */
+    
     tmpnumber += q[j];
     tmpcost += r[j];
     s[j]=YES;
     
     // 人月と予算チェック
-        if(tmpnumber >= m){
-            if(mincost == 0) {
-                mincost = tmpcost;
-            }else if(tmpcost < mincost) {
-                mincost = tmpcost;
-            }
+    if(tmpnumber >= m){
+        if(mincost == 0) {
+            mincost = tmpcost;
+        }else if(tmpcost < mincost) {
+            mincost = tmpcost;
         }
-        corpcheck1(j+1); /* j 番目の会社を残してチェック */
+    }
+    
+    corpcheck1(j+1); /* j番目の会社を残してチェック */
+    
     tmpnumber -= q[j];
     tmpcost -= r[j];
     s[j]=NO;
-    if(tmpnumber > 200000){return;} // 人員オーバー
-    corpcheck1(j+1); /* j 番目の会社を取り除いて次をチェック */
+    
+    corpcheck1(j+1); /* j番目の会社を取り除いて次をチェック */
 }
 
 // ソート前提の探索
 void corpcheck2(int j) {
     
+    // j番目の会社情報を加算する前にチェック
     if(j > n-1) return; /* 全会社チェック終了 */
+    if(tmpnumber >= m){return;} /* 枝落とし */
+    
     tmpnumber += t[j];
     tmpcost += u[j];
     v[j]=YES;
     
     // 人月と予算チェック
-        if(tmpnumber >= m){
-            if(mincost == 0) {
-                mincost = tmpcost;
-            }else if(tmpcost < mincost) {
-                mincost = tmpcost;
-                //if (mincost == answer){
-                //    jchi = j;
-                //    arraymemo(t,u,v,j+1);
-                //}
-            }
-            if(tmpnumber > 200000){return;} // 人員オーバー
+    if(tmpnumber >= m){
+        if(mincost == 0) {
+            mincost = tmpcost;
+        }else if(tmpcost < mincost) {
+            mincost = tmpcost;
+            //if (mincost == answer){
+            //    jchi = j;
+            //    arraymemo(t,u,v,j+1);
+            //}
         }
-        corpcheck2(j+1); /* j 番目の会社を残してチェック */
+    }
+    
+    corpcheck2(j+1); /* j番目の会社を残してチェック */
     
     // m値の4/5までひたすら加算して、それ以降全探索
     if(tmpnumber > m*4/5){
         tmpnumber -= t[j];
         tmpcost -= u[j];
         v[j]=NO;
-        corpcheck2(j+1); /* j 番目の会社を取り除いて次をチェック */
+        
+        corpcheck2(j+1); /* j番目の会社を取り除いて次をチェック */
     }
 }
 
@@ -168,6 +177,10 @@ int main(int argc, const char * argv[])
         scanf("%ld",&m);
         scanf("%d",&n);
         
+        if(m > 200000 | n > 50) {
+            NSLog(@"m,n値を見直してください");
+            return 0;
+        }
         
         // 探索開始
         // 全探索版-会社数が少なければ全探索
