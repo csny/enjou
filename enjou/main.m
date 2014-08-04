@@ -177,7 +177,7 @@ int main(int argc, const char * argv[])
         scanf("%ld",&m);
         scanf("%d",&n);
         
-        if(m > 200000 | n > 50) {
+        if(m > 200000 | m < 1 | n > 50 | n < 1) {
             NSLog(@"m,n値を見直してください");
             return 0;
         }
