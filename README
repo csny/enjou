@@ -8,6 +8,7 @@ https://github.com/csny/enjou/tree/version2
 2.動作条件
 Objective-Cで書かれています。
 xcode5.1で動作確認済み。
+ただ、branch:masterのプログラムだと、30社を超えるとやたら時間がかかります。
 改良版では、入力されるm値、n値について、条件通りに制限を設けています。
 
 
