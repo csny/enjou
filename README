@@ -2,6 +2,7 @@
 https://paiza.jp/poh/kirishima
 paizaのコンテストの課題を解決するためのプログラムです。未応募。
 branch:version2には改良版もあります。
+https://github.com/csny/enjou/tree/version2
 
 2.動作条件
 Objective-Cで書かれています。
