@@ -8,18 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-long m;
-int n;
+long m; // 必要な人数
+int n; // 会社数
 //int i,j;
-int q[50];
-long r[50];
-bool s[50];
+int q[50]; // 会社ごとの人数を入れる配列
+long r[50]; // 会社ごとの発注費用を入れる配列
+bool s[50]; // 会社ごとに使う使わないのフラグを入れる配列
 int t[50];
 long u[50];
 bool v[50];
-long costperman[50];
-long tmpnumber, tmpcost;
-long mincost;
+long costperman[50]; // 会社ごとの一人当たりの単価を入れる配列
+long tmpnumber, tmpcost; // 人数とコストを加算していくための一時的な変数
+long mincost; // 更新された最安値を入れる変数
 
 
 // テスト用
@@ -37,6 +37,7 @@ void arraymemo(int a[], long b[], bool c[], int jt){
         testflag[i] = c[i];
     }
 }
+
 
 // 全探索
 void corpcheck1(int j) {
@@ -177,7 +178,7 @@ int main(int argc, const char * argv[])
         scanf("%ld",&m);
         scanf("%d",&n);
         
-        if(m > 200000 | m < 1 | n > 50 | n < 1) {
+        if(m > 200000 | m < 1 | n > 50 | n < 1) { // 制限を外すときは、配列の定義修正も忘れずに
             NSLog(@"m,n値を見直してください");
             return 0;
         }
@@ -190,7 +191,7 @@ int main(int argc, const char * argv[])
             for (int i = 0; i < n; i++){
                 scanf("%d\n%ld", &q[i],&r[i]);
             }
-            //NSDate *startDate = [NSDate date];
+            //NSDate *startDate = [NSDate date]; // 使う場合、if-elseの枠から出さないとエラー吐く
             corpcheck1(0);
         }else{
         
@@ -199,7 +200,7 @@ int main(int argc, const char * argv[])
             for (int i = 0; i < n; i++){
                 scanf("%d\n%ld", &t[i],&u[i]);
             }
-            //NSDate *startDate = [NSDate date];
+            //NSDate *startDate = [NSDate date]; // 使う場合、if-elseの枠から出さないとエラー吐く
             for (int i = 0; i < n; i++){
                 costperman[i]=u[i]/t[i];
             }
@@ -208,13 +209,13 @@ int main(int argc, const char * argv[])
             //arraymemo(t,u,v,n);
             corpcheck2(0);
         }
-        
+    
         // 出力
         NSLog(@"%ld\n", mincost);
         // 計測時間出力
         //NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:startDate];
         //NSLog(@"time is %lf (sec)", interval);
-        
+    
         // テスト出力
         //NSLog(@"jchi is %d. m,n is %ld,%d.", jchi,m,n);
         //NSLog(@"以下は配列(arraymemo)");
